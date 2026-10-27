@@ -30,19 +30,23 @@ audio/                   one MP3 per phrase and dialogue line
 scripts/setup_tts.sh     downloads the offline French voices
 scripts/make_audio.py    makes MP3s for any line that doesn't have one yet
 sw.js, manifest.webmanifest, icons/   offline support + installable app
-.github/workflows/       audio.yml regenerates audio; pages.yml publishes the app
+.github/workflows/       audio.yml makes audio for new lessons
 ```
 
 ## Put it online (GitHub Pages)
 
-1. Create a repo `petit-a-petit` on GitHub and upload these files (keep the folders).
-2. Repo **Settings → Pages → Source: GitHub Actions**.
-3. Repo **Settings → Actions → General → Workflow permissions: Read and write**.
-4. Push to `main`. The app appears at `https://davepomerlo.github.io/petit-a-petit/`.
-5. On Android, open that link in Chrome → ⋮ menu → **Add to Home screen** / **Install app**.
+The app is published straight from the `main` branch:
+repo **Settings → Pages → Source: Deploy from a branch → main / (root)**.
+It's live at `https://davepomerlo.github.io/petit-a-petit/`, and every change to `main` republishes it in a minute or two.
+
+For the audio workflow to save new clips: **Settings → Actions → General → Workflow permissions: Read and write**.
+
+On Android, open the link in Chrome → ⋮ menu → **Add to Home screen** / **Install app**.
 
 Speech recognition needs Chrome on Android (or desktop Chrome) and microphone permission.
 Without it, speaking practice falls back to listen-repeat-and-self-check.
+
+When uploading through the GitHub website, drag whole folders rather than picking files, or the folder structure is lost.
 
 ## Adding a lesson
 
