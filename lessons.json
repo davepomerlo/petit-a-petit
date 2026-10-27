@@ -1,0 +1,1106 @@
+{
+  "version": 1,
+  "lessons": [
+    {
+      "id": "l1",
+      "fr": "Bonjour !",
+      "title": {
+        "ja": "あいさつ",
+        "en": "Greetings"
+      },
+      "intro": {
+        "ja": "毎日使うあいさつとお礼の言葉。フランスではお店に入るとき « Bonjour » と言うのがマナーです。",
+        "en": "Everyday hellos, goodbyes and thank-yous. In France it's polite to say « Bonjour » when you walk into a shop."
+      },
+      "phrases": [
+        {
+          "id": "l1-01",
+          "fr": "Bonjour",
+          "ja": "こんにちは／おはようございます",
+          "en": "Hello / Good morning",
+          "kana": "ボンジュール"
+        },
+        {
+          "id": "l1-02",
+          "fr": "Bonsoir",
+          "ja": "こんばんは",
+          "en": "Good evening",
+          "kana": "ボンソワール"
+        },
+        {
+          "id": "l1-03",
+          "fr": "Salut",
+          "ja": "やあ／じゃあね（くだけた言い方）",
+          "en": "Hi / Bye (casual)",
+          "kana": "サリュ",
+          "note": {
+            "ja": "友だち同士で使います。店員さんや初対面の人には Bonjour を。",
+            "en": "For friends. Use Bonjour with shop staff and people you don't know."
+          }
+        },
+        {
+          "id": "l1-04",
+          "fr": "Merci",
+          "ja": "ありがとう",
+          "en": "Thank you",
+          "kana": "メルスィ"
+        },
+        {
+          "id": "l1-05",
+          "fr": "Merci beaucoup",
+          "ja": "どうもありがとうございます",
+          "en": "Thank you very much",
+          "kana": "メルスィ ボクー"
+        },
+        {
+          "id": "l1-06",
+          "fr": "De rien",
+          "ja": "どういたしまして",
+          "en": "You're welcome",
+          "kana": "ドゥ リヤン"
+        },
+        {
+          "id": "l1-07",
+          "fr": "S'il vous plaît",
+          "ja": "お願いします",
+          "en": "Please",
+          "kana": "スィル ヴ プレ"
+        },
+        {
+          "id": "l1-08",
+          "fr": "Excusez-moi",
+          "ja": "すみません（呼びかけ）",
+          "en": "Excuse me",
+          "kana": "エクスキュゼ ムワ"
+        },
+        {
+          "id": "l1-09",
+          "fr": "Pardon",
+          "ja": "ごめんなさい",
+          "en": "Sorry",
+          "kana": "パルドン"
+        },
+        {
+          "id": "l1-10",
+          "fr": "Au revoir",
+          "ja": "さようなら",
+          "en": "Goodbye",
+          "kana": "オ ルヴォワール"
+        },
+        {
+          "id": "l1-11",
+          "fr": "Bonne journée !",
+          "ja": "よい一日を！",
+          "en": "Have a nice day!",
+          "kana": "ボヌ ジュルネ"
+        }
+      ],
+      "tips": [
+        {
+          "ja": "語末の子音字はたいてい読みません。beaucoup の p、plaît の t、vous の s は発音しません。",
+          "en": "Final consonants are usually silent: the p in beaucoup, the t in plaît, the s in vous."
+        },
+        {
+          "ja": "R はのどの奥で軽くこする音。日本語のラ行（舌先で弾く音）とは違い、軽いうがいに近い音です。Bonjour と Au revoir で練習しましょう。",
+          "en": "French R is made at the back of the throat, close to a light gargle, not the Japanese ラ行 tongue-tap. Practise with Bonjour and Au revoir."
+        },
+        {
+          "ja": "カタカナは目安です。かならず音声を聞いて、まねして言いましょう。",
+          "en": "The katakana is only a rough guide. Always listen to the audio and copy it."
+        }
+      ],
+      "dialogue": {
+        "title": {
+          "ja": "パン屋で",
+          "en": "At the bakery"
+        },
+        "lines": [
+          {
+            "id": "l1-d1",
+            "who": "Paul",
+            "v": "m",
+            "fr": "Bonjour, madame !",
+            "ja": "こんにちは！",
+            "en": "Hello, ma'am!"
+          },
+          {
+            "id": "l1-d2",
+            "who": "Claire",
+            "v": "f",
+            "fr": "Bonjour, monsieur.",
+            "ja": "こんにちは。",
+            "en": "Hello, sir."
+          },
+          {
+            "id": "l1-d3",
+            "who": "Paul",
+            "v": "m",
+            "fr": "Un croissant, s'il vous plaît.",
+            "ja": "クロワッサンを一つお願いします。",
+            "en": "A croissant, please."
+          },
+          {
+            "id": "l1-d4",
+            "who": "Claire",
+            "v": "f",
+            "fr": "Voilà. Un euro, s'il vous plaît.",
+            "ja": "はい、どうぞ。1ユーロです。",
+            "en": "Here you are. One euro, please."
+          },
+          {
+            "id": "l1-d5",
+            "who": "Paul",
+            "v": "m",
+            "fr": "Merci beaucoup ! Au revoir !",
+            "ja": "どうもありがとう！さようなら！",
+            "en": "Thank you very much! Goodbye!"
+          },
+          {
+            "id": "l1-d6",
+            "who": "Claire",
+            "v": "f",
+            "fr": "De rien. Bonne journée !",
+            "ja": "どういたしまして。よい一日を！",
+            "en": "You're welcome. Have a nice day!"
+          }
+        ],
+        "questions": [
+          {
+            "q": {
+              "ja": "ポールは何を買いましたか？",
+              "en": "What did Paul buy?"
+            },
+            "options": [
+              {
+                "ja": "クロワッサン",
+                "en": "A croissant"
+              },
+              {
+                "ja": "コーヒー",
+                "en": "A coffee"
+              },
+              {
+                "ja": "バゲット",
+                "en": "A baguette"
+              },
+              {
+                "ja": "水",
+                "en": "Water"
+              }
+            ],
+            "answer": 0
+          },
+          {
+            "q": {
+              "ja": "いくらでしたか？",
+              "en": "How much did it cost?"
+            },
+            "options": [
+              {
+                "ja": "1ユーロ",
+                "en": "One euro"
+              },
+              {
+                "ja": "2ユーロ",
+                "en": "Two euros"
+              },
+              {
+                "ja": "10ユーロ",
+                "en": "Ten euros"
+              },
+              {
+                "ja": "無料",
+                "en": "Free"
+              }
+            ],
+            "answer": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "l2",
+      "fr": "Enchanté",
+      "title": {
+        "ja": "自己紹介",
+        "en": "Introducing yourself"
+      },
+      "intro": {
+        "ja": "名前、出身、住んでいる場所を言ってみましょう。",
+        "en": "Say your name, where you're from and where you live."
+      },
+      "phrases": [
+        {
+          "id": "l2-01",
+          "fr": "Je m'appelle Yuki.",
+          "ja": "私の名前はユキです。",
+          "en": "My name is Yuki.",
+          "kana": "ジュ マペル ユキ",
+          "note": {
+            "ja": "Yuki のところに自分の名前を入れましょう。",
+            "en": "Swap in your own name."
+          }
+        },
+        {
+          "id": "l2-02",
+          "fr": "Comment vous appelez-vous ?",
+          "ja": "お名前は何ですか？（ていねい）",
+          "en": "What's your name? (polite)",
+          "kana": "コマン ヴ ザプレ ヴ"
+        },
+        {
+          "id": "l2-03",
+          "fr": "Enchanté.",
+          "ja": "はじめまして。",
+          "en": "Nice to meet you.",
+          "kana": "アンシャンテ",
+          "alt": [
+            "Enchantée."
+          ],
+          "note": {
+            "ja": "女性が書くときは Enchantée。発音は同じです。",
+            "en": "Women write Enchantée. It sounds the same."
+          }
+        },
+        {
+          "id": "l2-04",
+          "fr": "Je suis japonais.",
+          "ja": "私は日本人です。（男性）",
+          "en": "I'm Japanese. (man)",
+          "kana": "ジュ スュイ ジャポネ",
+          "v": "m"
+        },
+        {
+          "id": "l2-05",
+          "fr": "Je suis japonaise.",
+          "ja": "私は日本人です。（女性）",
+          "en": "I'm Japanese. (woman)",
+          "kana": "ジュ スュイ ジャポネーズ"
+        },
+        {
+          "id": "l2-06",
+          "fr": "J'habite à Tokyo.",
+          "ja": "東京に住んでいます。",
+          "en": "I live in Tokyo.",
+          "kana": "ジャビット ア トーキョー"
+        },
+        {
+          "id": "l2-07",
+          "fr": "J'apprends le français.",
+          "ja": "フランス語を勉強しています。",
+          "en": "I'm learning French.",
+          "kana": "ジャプラン ル フランセ"
+        },
+        {
+          "id": "l2-08",
+          "fr": "Comment allez-vous ?",
+          "ja": "お元気ですか？（ていねい）",
+          "en": "How are you? (polite)",
+          "kana": "コマン タレ ヴ"
+        },
+        {
+          "id": "l2-09",
+          "fr": "Ça va ?",
+          "ja": "元気？",
+          "en": "How's it going?",
+          "kana": "サ ヴァ"
+        },
+        {
+          "id": "l2-10",
+          "fr": "Ça va bien, merci.",
+          "ja": "元気です、ありがとう。",
+          "en": "I'm fine, thanks.",
+          "kana": "サ ヴァ ビヤン メルスィ"
+        },
+        {
+          "id": "l2-11",
+          "fr": "Et vous ?",
+          "ja": "あなたは？",
+          "en": "And you?",
+          "kana": "エ ヴ"
+        }
+      ],
+      "tips": [
+        {
+          "ja": "リエゾン：vous appelez は「ヴ ザプレ」。ふだん読まない語末の s が、次の母音とつながって［z］の音になります。",
+          "en": "Liaison: vous appelez sounds like 'voo za-play'. The normally silent s joins the next vowel as a z sound."
+        },
+        {
+          "ja": "h は発音しません。J'habite は「ジャビット」。",
+          "en": "H is always silent: J'habite sounds like 'zha-beet'."
+        },
+        {
+          "ja": "vous は初対面の人や目上の人に、tu は友だちや家族に使います。まずは vous から覚えましょう。",
+          "en": "Use vous with strangers and anyone senior; tu with friends and family. Start with vous."
+        },
+        {
+          "ja": "japonais／japonaise のように男性形と女性形があります。女性形は最後の s を「ズ」と読みます。",
+          "en": "Many words have masculine and feminine forms. In japonaise the s is pronounced (z); in japonais it's silent."
+        }
+      ],
+      "dialogue": {
+        "title": {
+          "ja": "パーティーで",
+          "en": "At a party"
+        },
+        "lines": [
+          {
+            "id": "l2-d1",
+            "who": "Léa",
+            "v": "f",
+            "fr": "Bonjour ! Je m'appelle Léa. Comment vous appelez-vous ?",
+            "ja": "こんにちは！レアです。お名前は？",
+            "en": "Hi! I'm Léa. What's your name?"
+          },
+          {
+            "id": "l2-d2",
+            "who": "Kenji",
+            "v": "m",
+            "fr": "Je m'appelle Kenji. Enchanté.",
+            "ja": "ケンジです。はじめまして。",
+            "en": "I'm Kenji. Nice to meet you."
+          },
+          {
+            "id": "l2-d3",
+            "who": "Léa",
+            "v": "f",
+            "fr": "Enchantée ! Vous êtes japonais ?",
+            "ja": "はじめまして！日本人ですか？",
+            "en": "Nice to meet you! Are you Japanese?"
+          },
+          {
+            "id": "l2-d4",
+            "who": "Kenji",
+            "v": "m",
+            "fr": "Oui, je suis japonais. J'habite à Osaka.",
+            "ja": "はい、日本人です。大阪に住んでいます。",
+            "en": "Yes, I'm Japanese. I live in Osaka."
+          },
+          {
+            "id": "l2-d5",
+            "who": "Léa",
+            "v": "f",
+            "fr": "Et vous parlez français ?",
+            "ja": "フランス語を話すんですか？",
+            "en": "And you speak French?"
+          },
+          {
+            "id": "l2-d6",
+            "who": "Kenji",
+            "v": "m",
+            "fr": "Un peu. J'apprends le français.",
+            "ja": "少しだけ。フランス語を勉強しています。",
+            "en": "A little. I'm learning French."
+          }
+        ],
+        "questions": [
+          {
+            "q": {
+              "ja": "ケンジはどこに住んでいますか？",
+              "en": "Where does Kenji live?"
+            },
+            "options": [
+              {
+                "ja": "大阪",
+                "en": "Osaka"
+              },
+              {
+                "ja": "東京",
+                "en": "Tokyo"
+              },
+              {
+                "ja": "パリ",
+                "en": "Paris"
+              },
+              {
+                "ja": "京都",
+                "en": "Kyoto"
+              }
+            ],
+            "answer": 0
+          },
+          {
+            "q": {
+              "ja": "ケンジはフランス語をどのくらい話しますか？",
+              "en": "How much French does Kenji speak?"
+            },
+            "options": [
+              {
+                "ja": "少しだけ",
+                "en": "A little"
+              },
+              {
+                "ja": "ぺらぺら",
+                "en": "Fluently"
+              },
+              {
+                "ja": "まったく話さない",
+                "en": "Not at all"
+              }
+            ],
+            "answer": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "l3",
+      "fr": "Un, deux, trois",
+      "title": {
+        "ja": "数字 1〜10",
+        "en": "Numbers 1–10"
+      },
+      "intro": {
+        "ja": "買い物や値段で必ず使う1から10までの数字。",
+        "en": "One to ten: the numbers you need for shopping and prices."
+      },
+      "phrases": [
+        {
+          "id": "l3-01",
+          "fr": "un",
+          "ja": "1（いち）",
+          "en": "1 (one)",
+          "kana": "アン"
+        },
+        {
+          "id": "l3-02",
+          "fr": "deux",
+          "ja": "2（に）",
+          "en": "2 (two)",
+          "kana": "ドゥ"
+        },
+        {
+          "id": "l3-03",
+          "fr": "trois",
+          "ja": "3（さん）",
+          "en": "3 (three)",
+          "kana": "トロワ"
+        },
+        {
+          "id": "l3-04",
+          "fr": "quatre",
+          "ja": "4（よん）",
+          "en": "4 (four)",
+          "kana": "カトル"
+        },
+        {
+          "id": "l3-05",
+          "fr": "cinq",
+          "ja": "5（ご）",
+          "en": "5 (five)",
+          "kana": "サンク"
+        },
+        {
+          "id": "l3-06",
+          "fr": "six",
+          "ja": "6（ろく）",
+          "en": "6 (six)",
+          "kana": "スィス"
+        },
+        {
+          "id": "l3-07",
+          "fr": "sept",
+          "ja": "7（なな）",
+          "en": "7 (seven)",
+          "kana": "セット"
+        },
+        {
+          "id": "l3-08",
+          "fr": "huit",
+          "ja": "8（はち）",
+          "en": "8 (eight)",
+          "kana": "ユイット"
+        },
+        {
+          "id": "l3-09",
+          "fr": "neuf",
+          "ja": "9（きゅう）",
+          "en": "9 (nine)",
+          "kana": "ヌフ"
+        },
+        {
+          "id": "l3-10",
+          "fr": "dix",
+          "ja": "10（じゅう）",
+          "en": "10 (ten)",
+          "kana": "ディス"
+        }
+      ],
+      "tips": [
+        {
+          "ja": "un、cinq の「アン」「サン」は鼻母音。鼻に息を抜きながら言い、最後に舌を上につけません。",
+          "en": "un and cinq use nasal vowels: let air through your nose and don't finish with your tongue touching the roof of your mouth."
+        },
+        {
+          "ja": "six、dix は単独では「スィス」「ディス」。後ろに名詞が来ると音が変わります（six euros＝スィ ズーロ）。まずは単独の形で覚えましょう。",
+          "en": "On their own, six and dix end in an s sound. Before a noun the sound changes (six euros = 'see zeu-ro'). Learn them alone first."
+        },
+        {
+          "ja": "huit の h は読みません。「ユイット」。",
+          "en": "The h in huit is silent."
+        },
+        {
+          "ja": "un は男性名詞に、une は女性名詞に使います：un croissant、une baguette。",
+          "en": "Use un with masculine nouns and une with feminine ones: un croissant, une baguette."
+        }
+      ],
+      "dialogue": {
+        "title": {
+          "ja": "パン屋で注文",
+          "en": "Ordering at the bakery"
+        },
+        "lines": [
+          {
+            "id": "l3-d1",
+            "who": "Claire",
+            "v": "f",
+            "fr": "Bonjour ! Vous désirez ?",
+            "ja": "いらっしゃいませ！何にしますか？",
+            "en": "Hello! What would you like?"
+          },
+          {
+            "id": "l3-d2",
+            "who": "Kenji",
+            "v": "m",
+            "fr": "Trois croissants, s'il vous plaît.",
+            "ja": "クロワッサンを3つお願いします。",
+            "en": "Three croissants, please."
+          },
+          {
+            "id": "l3-d3",
+            "who": "Claire",
+            "v": "f",
+            "fr": "Trois croissants. Et avec ça ?",
+            "ja": "クロワッサン3つですね。ほかには？",
+            "en": "Three croissants. Anything else?"
+          },
+          {
+            "id": "l3-d4",
+            "who": "Kenji",
+            "v": "m",
+            "fr": "Deux baguettes, s'il vous plaît.",
+            "ja": "バゲットを2本お願いします。",
+            "en": "Two baguettes, please."
+          },
+          {
+            "id": "l3-d5",
+            "who": "Claire",
+            "v": "f",
+            "fr": "Ça fait six euros.",
+            "ja": "6ユーロになります。",
+            "en": "That's six euros."
+          }
+        ],
+        "questions": [
+          {
+            "q": {
+              "ja": "クロワッサンをいくつ買いましたか？",
+              "en": "How many croissants did Kenji buy?"
+            },
+            "options": [
+              {
+                "ja": "3つ",
+                "en": "Three"
+              },
+              {
+                "ja": "2つ",
+                "en": "Two"
+              },
+              {
+                "ja": "6つ",
+                "en": "Six"
+              },
+              {
+                "ja": "10個",
+                "en": "Ten"
+              }
+            ],
+            "answer": 0
+          },
+          {
+            "q": {
+              "ja": "全部でいくらでしたか？",
+              "en": "How much was it altogether?"
+            },
+            "options": [
+              {
+                "ja": "6ユーロ",
+                "en": "Six euros"
+              },
+              {
+                "ja": "3ユーロ",
+                "en": "Three euros"
+              },
+              {
+                "ja": "2ユーロ",
+                "en": "Two euros"
+              },
+              {
+                "ja": "10ユーロ",
+                "en": "Ten euros"
+              }
+            ],
+            "answer": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "l4",
+      "fr": "Au café",
+      "title": {
+        "ja": "カフェで",
+        "en": "At the café"
+      },
+      "intro": {
+        "ja": "注文する、値段を聞く、会計をする。カフェで使う表現です。",
+        "en": "Order, ask the price and pay: what you need in a café."
+      },
+      "phrases": [
+        {
+          "id": "l4-01",
+          "fr": "Un café, s'il vous plaît.",
+          "ja": "コーヒーを一つお願いします。",
+          "en": "A coffee, please.",
+          "kana": "アン カフェ スィル ヴ プレ"
+        },
+        {
+          "id": "l4-02",
+          "fr": "Je voudrais un thé.",
+          "ja": "紅茶をお願いしたいのですが。",
+          "en": "I'd like a tea.",
+          "kana": "ジュ ヴドレ アン テ",
+          "note": {
+            "ja": "Je voudrais は「〜がほしいのですが」。ていねいに注文するときの決まり文句です。",
+            "en": "Je voudrais means 'I would like': the polite way to order."
+          }
+        },
+        {
+          "id": "l4-03",
+          "fr": "Une bouteille d'eau, s'il vous plaît.",
+          "ja": "水を1本お願いします。",
+          "en": "A bottle of water, please.",
+          "kana": "ユヌ ブテイユ ドー スィル ヴ プレ"
+        },
+        {
+          "id": "l4-04",
+          "fr": "Avec du lait.",
+          "ja": "ミルク入りで。",
+          "en": "With milk.",
+          "kana": "アヴェク デュ レ"
+        },
+        {
+          "id": "l4-05",
+          "fr": "Sans sucre.",
+          "ja": "砂糖なしで。",
+          "en": "No sugar.",
+          "kana": "サン スュクル"
+        },
+        {
+          "id": "l4-06",
+          "fr": "Sur place ou à emporter ?",
+          "ja": "店内ですか、お持ち帰りですか？",
+          "en": "For here or to go?",
+          "kana": "スュル プラス ウ ア アンポルテ"
+        },
+        {
+          "id": "l4-07",
+          "fr": "À emporter, s'il vous plaît.",
+          "ja": "持ち帰りでお願いします。",
+          "en": "To go, please.",
+          "kana": "ア アンポルテ スィル ヴ プレ"
+        },
+        {
+          "id": "l4-08",
+          "fr": "C'est combien ?",
+          "ja": "いくらですか？",
+          "en": "How much is it?",
+          "kana": "セ コンビヤン"
+        },
+        {
+          "id": "l4-09",
+          "fr": "Ça fait quatre euros.",
+          "ja": "4ユーロになります。",
+          "en": "That's four euros.",
+          "kana": "サ フェ カトル ユーロ"
+        },
+        {
+          "id": "l4-10",
+          "fr": "L'addition, s'il vous plaît.",
+          "ja": "お会計をお願いします。",
+          "en": "The bill, please.",
+          "kana": "ラディスィオン スィル ヴ プレ"
+        }
+      ],
+      "tips": [
+        {
+          "ja": "u（du、sucre）は「イ」の口の形のまま「ウ」と言う音。日本語にない音なので、音声をよく聞きましょう。",
+          "en": "The French u (du, sucre): round your lips as for 'oo' but say 'ee'. Japanese has no such sound, so listen closely."
+        },
+        {
+          "ja": "an／en／on（emporter、combien）は鼻母音。舌を上につけずに、鼻に響かせます。",
+          "en": "an, en and on (emporter, combien) are nasal vowels: let them ring in your nose without closing with your tongue."
+        },
+        {
+          "ja": "フランスのカフェで « un café » と頼むと、ふつうはエスプレッソが出てきます。",
+          "en": "Order « un café » in France and you'll usually get an espresso."
+        },
+        {
+          "ja": "店員さんを呼ぶときは « S'il vous plaît ! » または « Excusez-moi ! »。",
+          "en": "To call a server, say « S'il vous plaît ! » or « Excusez-moi ! »."
+        }
+      ],
+      "dialogue": {
+        "title": {
+          "ja": "カフェで注文",
+          "en": "Ordering a coffee"
+        },
+        "lines": [
+          {
+            "id": "l4-d1",
+            "who": "Hugo",
+            "v": "m",
+            "fr": "Bonjour ! Vous désirez ?",
+            "ja": "いらっしゃいませ！ご注文は？",
+            "en": "Hello! What can I get you?"
+          },
+          {
+            "id": "l4-d2",
+            "who": "Yuki",
+            "v": "f",
+            "fr": "Je voudrais un café, s'il vous plaît.",
+            "ja": "コーヒーをお願いします。",
+            "en": "I'd like a coffee, please."
+          },
+          {
+            "id": "l4-d3",
+            "who": "Hugo",
+            "v": "m",
+            "fr": "Avec du lait ?",
+            "ja": "ミルクは入れますか？",
+            "en": "With milk?"
+          },
+          {
+            "id": "l4-d4",
+            "who": "Yuki",
+            "v": "f",
+            "fr": "Non, merci. Sans sucre aussi.",
+            "ja": "いいえ、けっこうです。砂糖もなしで。",
+            "en": "No, thanks. No sugar either."
+          },
+          {
+            "id": "l4-d5",
+            "who": "Hugo",
+            "v": "m",
+            "fr": "Sur place ou à emporter ?",
+            "ja": "店内ですか、お持ち帰りですか？",
+            "en": "For here or to go?"
+          },
+          {
+            "id": "l4-d6",
+            "who": "Yuki",
+            "v": "f",
+            "fr": "À emporter. C'est combien ?",
+            "ja": "持ち帰りで。いくらですか？",
+            "en": "To go. How much is it?"
+          },
+          {
+            "id": "l4-d7",
+            "who": "Hugo",
+            "v": "m",
+            "fr": "Ça fait deux euros.",
+            "ja": "2ユーロになります。",
+            "en": "That's two euros."
+          }
+        ],
+        "questions": [
+          {
+            "q": {
+              "ja": "ユキは何を注文しましたか？",
+              "en": "What did Yuki order?"
+            },
+            "options": [
+              {
+                "ja": "ミルクも砂糖もなしのコーヒー",
+                "en": "Coffee, no milk or sugar"
+              },
+              {
+                "ja": "ミルク入りのコーヒー",
+                "en": "Coffee with milk"
+              },
+              {
+                "ja": "紅茶",
+                "en": "Tea"
+              },
+              {
+                "ja": "水",
+                "en": "Water"
+              }
+            ],
+            "answer": 0
+          },
+          {
+            "q": {
+              "ja": "ユキはどこで飲みますか？",
+              "en": "Where will Yuki drink it?"
+            },
+            "options": [
+              {
+                "ja": "持ち帰る",
+                "en": "She's taking it to go"
+              },
+              {
+                "ja": "店内で飲む",
+                "en": "In the café"
+              }
+            ],
+            "answer": 0
+          },
+          {
+            "q": {
+              "ja": "いくらでしたか？",
+              "en": "How much was it?"
+            },
+            "options": [
+              {
+                "ja": "2ユーロ",
+                "en": "Two euros"
+              },
+              {
+                "ja": "4ユーロ",
+                "en": "Four euros"
+              },
+              {
+                "ja": "1ユーロ",
+                "en": "One euro"
+              },
+              {
+                "ja": "10ユーロ",
+                "en": "Ten euros"
+              }
+            ],
+            "answer": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "l5",
+      "fr": "Où est… ?",
+      "title": {
+        "ja": "道をたずねる",
+        "en": "Asking the way"
+      },
+      "intro": {
+        "ja": "場所をたずねて、答えを聞き取る。わからないときの言い方も覚えましょう。",
+        "en": "Ask where things are, understand the answer, and say when you didn't catch it."
+      },
+      "phrases": [
+        {
+          "id": "l5-01",
+          "fr": "Où est la gare ?",
+          "ja": "駅はどこですか？",
+          "en": "Where is the station?",
+          "kana": "ウ エ ラ ガール"
+        },
+        {
+          "id": "l5-02",
+          "fr": "Où sont les toilettes ?",
+          "ja": "トイレはどこですか？",
+          "en": "Where are the toilets?",
+          "kana": "ウ ソン レ トワレット"
+        },
+        {
+          "id": "l5-03",
+          "fr": "C'est à droite.",
+          "ja": "右です。",
+          "en": "It's on the right.",
+          "kana": "セ タ ドロワット"
+        },
+        {
+          "id": "l5-04",
+          "fr": "C'est à gauche.",
+          "ja": "左です。",
+          "en": "It's on the left.",
+          "kana": "セ タ ゴーシュ"
+        },
+        {
+          "id": "l5-05",
+          "fr": "C'est tout droit.",
+          "ja": "まっすぐです。",
+          "en": "It's straight ahead.",
+          "kana": "セ トゥ ドロワ"
+        },
+        {
+          "id": "l5-06",
+          "fr": "C'est loin ?",
+          "ja": "遠いですか？",
+          "en": "Is it far?",
+          "kana": "セ ロワン"
+        },
+        {
+          "id": "l5-07",
+          "fr": "C'est près d'ici.",
+          "ja": "この近くです。",
+          "en": "It's near here.",
+          "kana": "セ プレ ディスィ"
+        },
+        {
+          "id": "l5-08",
+          "fr": "Je ne comprends pas.",
+          "ja": "わかりません。",
+          "en": "I don't understand.",
+          "kana": "ジュ ヌ コンプラン パ"
+        },
+        {
+          "id": "l5-09",
+          "fr": "Vous pouvez répéter ?",
+          "ja": "もう一度言ってもらえますか？",
+          "en": "Could you repeat that?",
+          "kana": "ヴ プヴェ レペテ"
+        },
+        {
+          "id": "l5-10",
+          "fr": "Plus lentement, s'il vous plaît.",
+          "ja": "もっとゆっくりお願いします。",
+          "en": "More slowly, please.",
+          "kana": "プリュ ラントマン スィル ヴ プレ"
+        }
+      ],
+      "tips": [
+        {
+          "ja": "droite（右）と droit（まっすぐ）はよく似ています。droite は最後の t を読んで「ドロワット」、droit は読まずに「ドロワ」。",
+          "en": "droite (right) and droit (straight) are easy to mix up: droite ends in a t sound, droit doesn't."
+        },
+        {
+          "ja": "C'est à は「セ タ」。c'est の t が次の à とつながります（リエゾン）。",
+          "en": "C'est à sounds like 'say ta': the t of c'est joins the à (liaison)."
+        },
+        {
+          "ja": "否定は動詞を ne … pas ではさみます：Je ne comprends pas。会話では ne が落ちることもよくあります。",
+          "en": "To say 'not', wrap the verb in ne … pas: Je ne comprends pas. In casual speech the ne often drops."
+        },
+        {
+          "ja": "聞き取れなかったら、遠慮せず « Vous pouvez répéter ? » と聞きましょう。",
+          "en": "If you didn't catch it, just ask: « Vous pouvez répéter ? »"
+        }
+      ],
+      "dialogue": {
+        "title": {
+          "ja": "駅への道",
+          "en": "The way to the station"
+        },
+        "lines": [
+          {
+            "id": "l5-d1",
+            "who": "Yuki",
+            "v": "f",
+            "fr": "Excusez-moi, monsieur. Où est la gare ?",
+            "ja": "すみません。駅はどこですか？",
+            "en": "Excuse me, sir. Where is the station?"
+          },
+          {
+            "id": "l5-d2",
+            "who": "Hugo",
+            "v": "m",
+            "fr": "La gare ? C'est tout droit, puis à gauche.",
+            "ja": "駅ですか？まっすぐ行って、それから左です。",
+            "en": "The station? Straight ahead, then left."
+          },
+          {
+            "id": "l5-d3",
+            "who": "Yuki",
+            "v": "f",
+            "fr": "Pardon, vous pouvez répéter ?",
+            "ja": "すみません、もう一度言ってもらえますか？",
+            "en": "Sorry, could you repeat that?"
+          },
+          {
+            "id": "l5-d4",
+            "who": "Hugo",
+            "v": "m",
+            "fr": "Tout droit, puis à gauche.",
+            "ja": "まっすぐ、それから左。",
+            "en": "Straight ahead, then left."
+          },
+          {
+            "id": "l5-d5",
+            "who": "Yuki",
+            "v": "f",
+            "fr": "C'est loin ?",
+            "ja": "遠いですか？",
+            "en": "Is it far?"
+          },
+          {
+            "id": "l5-d6",
+            "who": "Hugo",
+            "v": "m",
+            "fr": "Non, c'est près d'ici. Cinq minutes.",
+            "ja": "いいえ、この近くです。5分です。",
+            "en": "No, it's near here. Five minutes."
+          },
+          {
+            "id": "l5-d7",
+            "who": "Yuki",
+            "v": "f",
+            "fr": "Merci beaucoup !",
+            "ja": "どうもありがとうございます！",
+            "en": "Thank you very much!"
+          }
+        ],
+        "questions": [
+          {
+            "q": {
+              "ja": "駅への行き方は？",
+              "en": "How do you get to the station?"
+            },
+            "options": [
+              {
+                "ja": "まっすぐ行って左",
+                "en": "Straight ahead, then left"
+              },
+              {
+                "ja": "まっすぐ行って右",
+                "en": "Straight ahead, then right"
+              },
+              {
+                "ja": "左に曲がってまっすぐ",
+                "en": "Left, then straight ahead"
+              },
+              {
+                "ja": "右に曲がってまっすぐ",
+                "en": "Right, then straight ahead"
+              }
+            ],
+            "answer": 0
+          },
+          {
+            "q": {
+              "ja": "駅までどのくらいかかりますか？",
+              "en": "How long does it take?"
+            },
+            "options": [
+              {
+                "ja": "5分",
+                "en": "Five minutes"
+              },
+              {
+                "ja": "10分",
+                "en": "Ten minutes"
+              },
+              {
+                "ja": "2分",
+                "en": "Two minutes"
+              },
+              {
+                "ja": "30分",
+                "en": "Thirty minutes"
+              }
+            ],
+            "answer": 0
+          }
+        ]
+      }
+    }
+  ]
+}

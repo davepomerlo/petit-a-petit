@@ -1,0 +1,1122 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!--ARTIFACT-START-->
+<title>Petit à petit</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#2747b8">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Playwrite+FR+Moderne:wght@300;400&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap">
+<style>
+/* Layout: one narrow column, like a page of a French school cahier.
+   Seyès ruling (fine 8px lines, a stronger line every 32px, red margin) marks the practice sheet. */
+:root {
+  --paper: #f6f7fc;
+  --sheet: #ffffff;
+  --text: #1a2034;
+  --muted: #59607a;
+  --line: #e1e5f4;
+  --line-major: #b7c0e6;
+  --margin: #e8909c;
+  --accent: #2747b8;
+  --accent-soft: #e4e9fb;
+  --accent-ink: #ffffff;
+  --ok: #1d7a4b;
+  --ok-bg: #e2f4e9;
+  --bad: #c0263b;
+  --bad-bg: #fbe6e9;
+  --warn: #9a5c00;
+  --warn-bg: #fdf0d8;
+  --border: #dde1f0;
+  --shadow: 0 1px 2px rgba(26, 32, 52, .06), 0 6px 20px rgba(26, 32, 52, .06);
+
+  --f-display: "Playwrite FR Moderne", "Segoe Script", "Apple Chancery", cursive;
+  --f-body: "Atkinson Hyperlegible", "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+  --f-ja: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Atkinson Hyperlegible", sans-serif;
+
+  --s-xs: .8125rem;
+  --s-sm: .9375rem;
+  --s-md: 1.0625rem;
+  --s-lg: 1.375rem;
+  --s-xl: 1.875rem;
+  --s-2xl: 2.5rem;
+  --r: 14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #10142b; --sheet: #171d3d; --text: #e8ebf8; --muted: #a3aacb;
+    --line: #232b55; --line-major: #34407a; --margin: #7d3644;
+    --accent: #93a8ff; --accent-soft: #232c5e; --accent-ink: #0e1330;
+    --ok: #74d6a2; --ok-bg: #143628; --bad: #ff8e9d; --bad-bg: #431e28;
+    --warn: #f2b85c; --warn-bg: #3a2a11; --border: #29325f;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #10142b; --sheet: #171d3d; --text: #e8ebf8; --muted: #a3aacb;
+  --line: #232b55; --line-major: #34407a; --margin: #7d3644;
+  --accent: #93a8ff; --accent-soft: #232c5e; --accent-ink: #0e1330;
+  --ok: #74d6a2; --ok-bg: #143628; --bad: #ff8e9d; --bad-bg: #431e28;
+  --warn: #f2b85c; --warn-bg: #3a2a11; --border: #29325f;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.25);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--text);
+  font-family: var(--f-body);
+  font-size: var(--s-md);
+  line-height: 1.6;
+  -webkit-tap-highlight-color: transparent;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 10; background: var(--paper);
+}
+:lang(ja), [lang="ja"] { font-family: var(--f-ja); }
+[lang="fr"] { font-family: var(--f-body); }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+
+.wrap {
+  max-width: 560px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+}
+
+/* ---------- top bar ---------- */
+.bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--paper);
+  display: flex; align-items: center; gap: 10px;
+  padding-block: 12px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+.brand { font-family: var(--f-display); font-size: 1.35rem; color: var(--accent); line-height: 1.2; margin-right: auto; white-space: nowrap; }
+.iconbtn {
+  border: 1px solid var(--border); background: var(--sheet); border-radius: 999px;
+  min-width: 40px; height: 40px; padding: 0 12px; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  cursor: pointer; font-size: var(--s-sm);
+}
+.iconbtn svg { width: 18px; height: 18px; }
+.seg { display: inline-flex; border: 1px solid var(--border); border-radius: 999px; overflow: hidden; background: var(--sheet); }
+.seg button { border: 0; background: none; padding: 0 12px; height: 38px; cursor: pointer; font-size: var(--s-sm); color: var(--muted); }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); font-weight: 700; }
+
+/* ---------- type ---------- */
+h1, h2, h3 { margin: 0; line-height: 1.25; text-wrap: balance; }
+.eyebrow { font-size: var(--s-xs); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.cursive { font-family: var(--f-display); font-weight: 400; color: var(--accent); }
+.muted { color: var(--muted); }
+.sub-ja { display: block; font-family: var(--f-ja); font-size: var(--s-sm); color: var(--muted); }
+
+.stack { display: flex; flex-direction: column; gap: 16px; }
+.section-h { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-top: 28px; margin-bottom: 10px; }
+.section-h h2 { font-size: var(--s-lg); }
+
+/* ---------- home ---------- */
+.greet { display: grid; gap: 4px; margin-bottom: 18px; }
+.greet .cursive { font-size: var(--s-2xl); line-height: 1.35; }
+.next {
+  background: var(--accent); color: var(--accent-ink); border-radius: var(--r);
+  padding: 18px; display: grid; gap: 6px; border: 0; text-align: left; cursor: pointer; width: 100%;
+  box-shadow: var(--shadow);
+}
+.next .eyebrow { color: inherit; opacity: .8; }
+.next strong { font-size: var(--s-lg); }
+.next .go { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; margin-top: 4px; }
+
+.meters { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.meter { background: var(--sheet); border: 1px solid var(--border); border-radius: 12px; padding: 10px; display: grid; gap: 6px; }
+.meter b { font-size: var(--s-sm); }
+.meter .track { height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.meter .fill { height: 100%; background: var(--accent); border-radius: 3px; }
+.meter .pct { font-size: var(--s-xs); color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.lessons { display: grid; gap: 10px; }
+.lesson-row {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 14px;
+  background: var(--sheet); border: 1px solid var(--border); border-radius: var(--r);
+  padding: 14px; text-align: left; cursor: pointer; width: 100%;
+}
+.lesson-row:hover { border-color: var(--line-major); }
+.lnum { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); font-weight: 700; font-variant-numeric: tabular-nums; }
+.lesson-row .fr { font-family: var(--f-display); color: var(--accent); font-size: var(--s-md); line-height: 1.5; }
+.lesson-row .t { font-weight: 700; }
+.pips { display: grid; grid-template-columns: repeat(4, auto); gap: 4px 8px; font-size: var(--s-xs); color: var(--muted); text-align: center; }
+.pip { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--line-major); margin: 0 auto; }
+.pip.l1 { background: var(--line-major); }
+.pip.l2 { background: var(--accent); border-color: var(--accent); opacity: .6; }
+.pip.l3 { background: var(--accent); border-color: var(--accent); }
+
+/* ---------- lesson ---------- */
+.back { display: inline-flex; align-items: center; gap: 6px; border: 0; background: none; color: var(--accent); font-weight: 700; cursor: pointer; padding: 6px 0; }
+.lesson-head { display: grid; gap: 6px; margin: 6px 0 20px; }
+.lesson-head .cursive { font-size: var(--s-xl); line-height: 1.5; }
+.lesson-head h1 { font-size: var(--s-lg); }
+.skills { display: grid; gap: 10px; }
+.skill {
+  display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 12px; align-items: center;
+  background: var(--sheet); border: 1px solid var(--border); border-radius: var(--r); padding: 14px;
+  width: 100%; text-align: left; cursor: pointer;
+}
+.skill:hover { border-color: var(--line-major); }
+.skill .ord { font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; text-align: center; }
+.skill .nm { font-weight: 700; font-size: var(--s-md); }
+.skill .ds { font-size: var(--s-sm); color: var(--muted); }
+.dots { display: flex; gap: 4px; }
+.dots .pip { margin: 0; }
+.skill.mixed { background: var(--accent-soft); border-color: transparent; }
+
+.tips { background: var(--sheet); border: 1px solid var(--border); border-radius: var(--r); padding: 16px; display: grid; gap: 12px; }
+.tip { display: grid; grid-template-columns: 8px minmax(0, 1fr); gap: 10px; font-size: var(--s-sm); }
+.tip::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--margin); margin-top: .55em; }
+
+.phrase-list { display: grid; gap: 2px; background: var(--sheet); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
+.pl-row { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.pl-row:last-child { border-bottom: 0; }
+.pl-row .fr { font-weight: 700; }
+.pl-row .mn { font-size: var(--s-sm); color: var(--muted); }
+.pl-row .mn .sub-ja { display: inline; font-size: inherit; }
+.pl-row .mn .sub-ja::before { content: " · "; }
+
+/* ---------- play buttons ---------- */
+.play {
+  width: 40px; height: 40px; border-radius: 50%; border: 0; cursor: pointer; flex: none;
+  background: var(--accent-soft); color: var(--accent); display: inline-grid; place-items: center;
+}
+.play svg { width: 18px; height: 18px; }
+.play.big { width: 64px; height: 64px; }
+.play.big svg { width: 28px; height: 28px; }
+.play.slow { width: auto; padding: 0 14px; border-radius: 999px; gap: 6px; display: inline-flex; align-items: center; font-size: var(--s-sm); font-weight: 700; }
+.play.big.slow { height: 48px; }
+
+/* ---------- Seyès sheet ---------- */
+.sheet {
+  position: relative;
+  background-color: var(--sheet);
+  background-image:
+    linear-gradient(90deg, transparent 30px, var(--margin) 30px, var(--margin) 32px, transparent 32px),
+    repeating-linear-gradient(to bottom, transparent 0 31px, var(--line-major) 31px 32px),
+    repeating-linear-gradient(to bottom, transparent 0 7px, var(--line) 7px 8px);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 22px 18px 22px 46px;
+  box-shadow: var(--shadow);
+}
+.sheet .prompt { font-size: var(--s-sm); font-weight: 700; color: var(--muted); }
+.fr-big { font-size: var(--s-xl); font-weight: 700; line-height: 1.3; overflow-wrap: anywhere; }
+.kana { font-family: var(--f-ja); color: var(--muted); font-size: var(--s-sm); letter-spacing: .04em; }
+.meaning-main { font-size: var(--s-lg); font-weight: 700; }
+.note { background: var(--warn-bg); color: var(--text); border-radius: 10px; padding: 10px 12px; font-size: var(--s-sm); }
+
+.card-wrap { display: grid; gap: 16px; }
+.card-controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.reveal { border: 2px dashed var(--line-major); background: none; border-radius: 12px; padding: 14px; cursor: pointer; color: var(--muted); font-weight: 700; width: 100%; }
+.counter { font-variant-numeric: tabular-nums; color: var(--muted); font-size: var(--s-sm); }
+
+/* ---------- session ---------- */
+.sess-top { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; margin-bottom: 18px; }
+.progress { height: 10px; border-radius: 5px; background: var(--line); overflow: hidden; }
+.progress > div { height: 100%; background: var(--accent); border-radius: 5px; transition: width .3s ease; }
+.skill-tag { font-size: var(--s-xs); font-weight: 700; color: var(--accent); background: var(--accent-soft); border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
+
+.options { display: grid; gap: 10px; margin-top: 16px; }
+.opt {
+  border: 2px solid var(--border); background: var(--sheet); border-radius: 12px; padding: 14px 16px;
+  text-align: left; cursor: pointer; font-size: var(--s-md); line-height: 1.45; width: 100%;
+}
+.opt:hover:not(:disabled) { border-color: var(--line-major); }
+.opt .sub-ja { margin-top: 2px; }
+.opt.right { border-color: var(--ok); background: var(--ok-bg); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-bg); }
+.opt:disabled { cursor: default; }
+.opt.fr-opt { font-weight: 700; }
+
+.dlg { display: grid; gap: 8px; }
+.dlg-line { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; align-items: start; }
+.dlg-line .who { font-size: var(--s-xs); font-weight: 700; color: var(--muted); letter-spacing: .04em; }
+.dlg-line .txt { border: 0; background: none; text-align: left; padding: 0; cursor: pointer; font-weight: 700; line-height: 1.45; }
+.dlg-line .tr { font-size: var(--s-sm); color: var(--muted); font-weight: 400; display: block; }
+.dlg-line .play { width: 34px; height: 34px; }
+.dlg-line .play svg { width: 15px; height: 15px; }
+
+.answer-line {
+  min-height: 58px; border-bottom: 2px solid var(--line-major); display: flex; flex-wrap: wrap; gap: 8px; padding: 8px 0; align-items: center;
+}
+.bank { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.tile {
+  border: 2px solid var(--border); border-bottom-width: 4px; background: var(--sheet); border-radius: 10px;
+  padding: 8px 12px; cursor: pointer; font-weight: 700; font-size: var(--s-md);
+}
+.tile.used { visibility: hidden; }
+
+.type-in {
+  width: 100%; font: inherit; font-size: var(--s-lg); padding: 12px 14px; border-radius: 12px;
+  border: 2px solid var(--line-major); background: var(--sheet); color: var(--text); margin-top: 16px;
+}
+.type-in:focus { outline: none; border-color: var(--accent); }
+.accents { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.accents button { min-width: 40px; height: 40px; border-radius: 10px; border: 1px solid var(--border); background: var(--sheet); cursor: pointer; font-size: var(--s-md); }
+
+.mic {
+  width: 88px; height: 88px; border-radius: 50%; border: 0; cursor: pointer;
+  background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; margin: 22px auto 8px;
+  box-shadow: var(--shadow);
+}
+.mic svg { width: 36px; height: 36px; }
+.mic.on { animation: pulse 1.2s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 var(--accent-soft); } 50% { box-shadow: 0 0 0 16px var(--accent-soft); } }
+.center { text-align: center; }
+.heard { margin-top: 10px; font-size: var(--s-sm); }
+.w-ok { color: var(--ok); font-weight: 700; }
+.w-miss { color: var(--bad); font-weight: 700; text-decoration: underline wavy; text-underline-offset: 4px; }
+.self { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+.info { background: var(--accent-soft); border-radius: 10px; padding: 10px 12px; font-size: var(--s-sm); }
+
+.actions {
+  position: sticky; bottom: 0; margin-top: 22px;
+  padding-block: 12px calc(12px + env(safe-area-inset-bottom, 0px));
+  background: var(--paper);
+  display: grid; gap: 10px;
+}
+.btn {
+  border: 0; border-radius: 12px; padding: 14px 18px; font-weight: 700; font-size: var(--s-md); cursor: pointer; width: 100%;
+  background: var(--accent); color: var(--accent-ink);
+}
+.btn:disabled { opacity: .4; cursor: default; }
+.btn.ghost { background: var(--sheet); color: var(--text); border: 1px solid var(--border); }
+.btn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.feedback { border-radius: var(--r); padding: 14px 16px; display: grid; gap: 6px; }
+.feedback.ok { background: var(--ok-bg); }
+.feedback.bad { background: var(--bad-bg); }
+.feedback.almost { background: var(--warn-bg); }
+.feedback .verdict { font-weight: 700; font-size: var(--s-lg); }
+.feedback.ok .verdict { color: var(--ok); }
+.feedback.bad .verdict { color: var(--bad); }
+.feedback.almost .verdict { color: var(--warn); }
+.feedback .row { display: flex; gap: 10px; align-items: center; }
+.feedback .row .play { width: 36px; height: 36px; }
+
+/* ---------- results ---------- */
+.result-hero { text-align: center; display: grid; gap: 6px; padding: 26px 0 10px; }
+.result-hero .cursive { font-size: var(--s-2xl); line-height: 1.4; }
+.score { font-size: 3.5rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
+.miss-list { display: grid; gap: 8px; }
+
+/* ---------- settings ---------- */
+.settings { background: var(--sheet); border: 1px solid var(--border); border-radius: var(--r); padding: 16px; display: grid; gap: 14px; margin-top: 12px; }
+.set-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.switch { width: 52px; height: 30px; border-radius: 15px; border: 0; background: var(--line-major); position: relative; cursor: pointer; flex: none; }
+.switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: var(--sheet); transition: left .2s; }
+.switch[aria-checked="true"] { background: var(--accent); }
+.switch[aria-checked="true"]::after { left: 25px; }
+.danger { color: var(--bad); }
+.credits { font-size: var(--s-xs); color: var(--muted); margin-top: 28px; line-height: 1.5; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+@media (max-width: 380px) {
+  .meters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lesson-row { grid-template-columns: auto minmax(0, 1fr); }
+  .lesson-row .pips { grid-column: 1 / -1; justify-content: start; }
+}
+</style>
+<!--ARTIFACT-HEAD-END-->
+</head>
+<body>
+<div class="wrap" id="app">
+  <header class="bar"><span class="brand">Petit à petit</span></header>
+  <p class="muted" lang="ja">読み込み中… Loading…</p>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ================= UI text ================= */
+  const T = {
+    appSub: { ja: "フランス語 はじめの一歩", en: "First steps in French" },
+    hello: { ja: "Bonjour !", en: "Bonjour !" },
+    helloSub: { ja: "今日も少しずつ。", en: "A little every day." },
+    upNext: { ja: "次はこれ", en: "Up next" },
+    allDone: { ja: "全レッスン完了！まとめ練習で復習しましょう", en: "All lessons done! Keep sharp with mixed review" },
+    start: { ja: "はじめる", en: "Start" },
+    progress: { ja: "進み具合", en: "Your progress" },
+    lessons: { ja: "レッスン", en: "Lessons" },
+    lesson: { ja: "レッスン", en: "Lesson" },
+    back: { ja: "戻る", en: "Back" },
+    read: { ja: "読む", en: "Read" },
+    speak: { ja: "話す", en: "Speak" },
+    listen: { ja: "聞く", en: "Listen" },
+    write: { ja: "書く", en: "Write" },
+    mixed: { ja: "まとめ練習", en: "Mixed review" },
+    readDesc: { ja: "カードで覚えて、文と会話を読む", en: "Learn with cards, then read for meaning" },
+    speakDesc: { ja: "聞いて、まねして、声に出す", en: "Listen, copy, say it aloud" },
+    listenDesc: { ja: "音声だけで聞き取る", en: "Understand by ear only" },
+    writeDesc: { ja: "単語を並べて、フランス語を打つ", en: "Build and type French" },
+    mixedDesc: { ja: "4つの力をまとめて10問", en: "10 questions across all four skills" },
+    order: { ja: "おすすめの順番", en: "Suggested order" },
+    tips: { ja: "発音のコツ", en: "Pronunciation tips" },
+    phraseList: { ja: "フレーズ一覧", en: "Phrase list" },
+    cards: { ja: "フレーズカード", en: "Phrase cards" },
+    showMeaning: { ja: "タップして意味を見る", en: "Tap to see the meaning" },
+    slow: { ja: "ゆっくり", en: "Slow" },
+    prev: { ja: "前へ", en: "Back" },
+    next: { ja: "次へ", en: "Next" },
+    toQuiz: { ja: "読解クイズへ", en: "Start the reading quiz" },
+    skipCards: { ja: "カードを飛ばしてクイズへ", en: "Skip to the quiz" },
+    whatMeans: { ja: "意味はどれ？", en: "What does this mean?" },
+    readDlg: { ja: "会話を読んで答えましょう", en: "Read the dialogue and answer" },
+    tapLine: { ja: "文をタップすると訳が出ます", en: "Tap a line to see the translation" },
+    playAll: { ja: "全部再生", en: "Play all" },
+    whichHeard: { ja: "聞こえたのはどれ？", en: "Which one did you hear?" },
+    meaningHeard: { ja: "聞こえた文の意味は？", en: "What does it mean?" },
+    playAgain: { ja: "もう一度聞く", en: "Play again" },
+    build: { ja: "フランス語に並べかえましょう", en: "Build it in French" },
+    typeIt: { ja: "フランス語で書きましょう", en: "Write it in French" },
+    typeHere: { ja: "ここに入力", en: "Type here" },
+    sayIt: { ja: "聞いて、まねして言いましょう", en: "Listen, then say it" },
+    tapMic: { ja: "マイクをタップして話す", en: "Tap the mic and speak" },
+    listening: { ja: "聞いています…", en: "Listening…" },
+    heard: { ja: "聞き取った文", en: "We heard" },
+    noSpeech: { ja: "声が聞こえませんでした。もう一度どうぞ。", en: "We didn't hear anything. Try again." },
+    noMic: { ja: "ここではマイクが使えません。声に出して言ってから、自分で確かめましょう。", en: "The mic isn't available here. Say it aloud, then mark how it went." },
+    selfQ: { ja: "うまく言えましたか？", en: "How did it go?" },
+    saidIt: { ja: "言えた", en: "I said it" },
+    notYet: { ja: "まだ難しい", en: "Not yet" },
+    tryAgain: { ja: "もう一度", en: "Try again" },
+    cantSpeak: { ja: "今は話せない", en: "Can't speak now" },
+    check: { ja: "確認する", en: "Check" },
+    cont: { ja: "続ける", en: "Continue" },
+    skip: { ja: "スキップ", en: "Skip" },
+    correct: { ja: "正解！", en: "Correct!" },
+    great: { ja: "よく言えました！", en: "Well said!" },
+    close: { ja: "おしい！もう少し", en: "Close! Nearly there" },
+    wrong: { ja: "正解はこちら", en: "Here's the answer" },
+    almost: { ja: "ほぼ正解！アクセント記号に注意", en: "Almost! Watch the accents" },
+    done: { ja: "おつかれさま！", en: "Nice work!" },
+    best: { ja: "ベスト", en: "Best" },
+    review: { ja: "復習しよう", en: "Worth another look" },
+    again: { ja: "もう一度やる", en: "Practise again" },
+    toLesson: { ja: "レッスンに戻る", en: "Back to lesson" },
+    nextSkill: { ja: "次へ進む", en: "Next skill" },
+    settings: { ja: "設定", en: "Settings" },
+    kana: { ja: "カタカナの読み方を表示", en: "Show katakana guide" },
+    kanaHint: { ja: "あくまで目安。音声をまねするのが一番です。", en: "Only a rough guide. Copying the audio works best." },
+    reset: { ja: "学習記録をリセット", en: "Reset progress" },
+    resetSure: { ja: "本当にリセットしますか？", en: "Reset all progress?" },
+    yesReset: { ja: "リセットする", en: "Reset" },
+    cancel: { ja: "やめる", en: "Cancel" },
+    resetDone: { ja: "リセットしました", en: "Progress reset" },
+    close2: { ja: "閉じる", en: "Close" },
+    quit: { ja: "やめる", en: "Quit" },
+    credits: {
+      ja: "音声：Piper 合成音声（siwis — CC BY 4.0、upmc — CC BY-SA 4.0）。",
+      en: "Audio: Piper synthetic voices (siwis — CC BY 4.0, upmc — CC BY-SA 4.0)."
+    }
+  };
+
+  /* ================= state ================= */
+  const KEY = "petit-a-petit.v1";
+  function freshState() { return { v: 1, lang: "ja", kana: true, skills: {}, phrases: {} }; }
+  function loadState() {
+    try {
+      const s = JSON.parse(localStorage.getItem(KEY));
+      if (s && s.v === 1) return Object.assign(freshState(), s);
+    } catch (e) {}
+    return freshState();
+  }
+  const S = loadState();
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
+
+  let DATA = null;
+  const PH = {}, CLIP = {};
+  let view = { name: "home" };
+  let session = null;
+  let micBroken = false;
+  let settingsOpen = false, resetAsk = false, toast = "";
+
+  const SKILLS = ["read", "speak", "listen", "write"];
+  const app = document.getElementById("app");
+
+  /* ================= helpers ================= */
+  const t = k => (T[k] ? T[k][S.lang] : k);
+  const L = o => o[S.lang];
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  const lessonById = id => DATA.lessons.find(l => l.id === id);
+  const lessonNum = id => DATA.lessons.findIndex(l => l.id === id) + 1;
+
+  function meaning(p, cls) {
+    const main = `<span class="${cls || "meaning-main"}" ${S.lang === "ja" ? 'lang="ja"' : ""}>${esc(L(p))}</span>`;
+    const sub = S.lang === "en" ? `<span class="sub-ja" lang="ja">${esc(p.ja)}</span>` : "";
+    return main + sub;
+  }
+
+  const ICON = {
+    play: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>',
+    turtle: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 15c0-4 3.5-7 8-7s8 3 8 7z"/><path d="M6 15l-1 3M18 15l1 3M20 13h2"/></svg>',
+    mic: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>',
+    back: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>',
+    x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>',
+    gear: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>',
+    arrow: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+  };
+  const playBtn = (id, opts) => {
+    opts = opts || {};
+    const cls = "play" + (opts.big ? " big" : "") + (opts.slow ? " slow" : "");
+    const label = opts.slow ? `${ICON.turtle}<span>${t("slow")}</span>` : ICON.play;
+    return `<button class="${cls}" data-action="play" data-id="${id}"${opts.slow ? ' data-slow="1"' : ""} aria-label="${opts.slow ? t("slow") : "Play"}">${label}</button>`;
+  };
+
+  /* ================= audio ================= */
+  const player = new Audio();
+  player.preload = "auto";
+  let currentClip = null, queue = [];
+  function speakFallback(text, slow) {
+    try {
+      if (!("speechSynthesis" in window) || !text) return;
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = "fr-FR"; u.rate = slow ? 0.7 : 0.95;
+      speechSynthesis.cancel(); speechSynthesis.speak(u);
+    } catch (e) {}
+  }
+  function play(id, slow, keepQueue) {
+    if (!keepQueue) queue = [];
+    currentClip = { id, slow };
+    try { player.pause(); } catch (e) {}
+    player.src = "audio/" + id + ".mp3";
+    player.playbackRate = slow ? 0.72 : 1;
+    try { player.preservesPitch = true; } catch (e) {}
+    const p = player.play();
+    if (p && p.catch) p.catch(err => { if (err && err.name !== "AbortError") speakFallback(CLIP[id], slow); });
+  }
+  player.addEventListener("error", () => { if (currentClip) speakFallback(CLIP[currentClip.id], currentClip.slow); });
+  player.addEventListener("ended", () => { if (queue.length) setTimeout(() => play(queue.shift(), false, true), 350); });
+  function playAll(ids) { queue = ids.slice(1); play(ids[0], false, true); }
+
+  /* ================= text matching ================= */
+  const stripAcc = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/œ/g, "oe").replace(/æ/g, "ae");
+  const normWrite = s => s.toLowerCase().replace(/[’`´]/g, "'").replace(/[.!?¡¿,;:«»"…]/g, " ").replace(/\s+/g, " ").trim();
+  const NUMS = ["zero", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", "dix"];
+  function normSpeech(s) {
+    s = stripAcc(normWrite(s)).replace(/€/g, " euros ").replace(/['\-]/g, " ");
+    s = s.replace(/\b(\d+)\b/g, (m, d) => (NUMS[+d] !== undefined ? NUMS[+d] : m));
+    return s.replace(/\s+/g, " ").trim();
+  }
+  function lev(a, b) {
+    const m = a.length, n = b.length;
+    if (!m) return n; if (!n) return m;
+    let prev = Array.from({ length: n + 1 }, (_, j) => j);
+    for (let i = 1; i <= m; i++) {
+      const cur = [i];
+      for (let j = 1; j <= n; j++) cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+      prev = cur;
+    }
+    return prev[n];
+  }
+  function similarity(target, heard) {
+    const a = normSpeech(target).replace(/ /g, ""), b = normSpeech(heard).replace(/ /g, "");
+    if (!a.length) return 0;
+    return Math.max(0, 1 - lev(a, b) / Math.max(a.length, b.length));
+  }
+  function gradeWrite(p, input) {
+    const targets = [p.fr].concat(p.alt || []);
+    const inp = normWrite(input);
+    if (!inp) return 0;
+    if (targets.some(x => normWrite(x) === inp)) return 1;
+    const loose = s => stripAcc(normWrite(s)).replace(/-/g, " ").replace(/\s+/g, " ");
+    if (targets.some(x => loose(x) === loose(input))) return 0.7;
+    return 0;
+  }
+  const tokens = fr => fr.replace(/\s*[.!?]+\s*$/, "").split(/\s+/).filter(Boolean);
+
+  /* ================= progress ================= */
+  const skillScore = (lid, sk) => ((S.skills[lid] || {})[sk] || 0);
+  const level = score => (score >= 90 ? 3 : score >= 70 ? 2 : score > 0 ? 1 : 0);
+  const dots = score => { const lv = level(score); return [1, 2, 3].map(i => `<span class="pip ${i <= lv ? "l" + lv : ""}"></span>`).join(""); };
+  function strength(id) { const r = S.phrases[id]; return r ? r.ok - r.ng : 0; }
+  function recordPhrase(id, score) {
+    const r = S.phrases[id] || (S.phrases[id] = { ok: 0, ng: 0 });
+    if (score >= 0.6) r.ok++; else r.ng++;
+  }
+  function nextUp() {
+    for (const l of DATA.lessons) for (const sk of SKILLS) if (skillScore(l.id, sk) < 70) return { lid: l.id, sk };
+    return null;
+  }
+  function pickPhrases(lesson, n) {
+    const ranked = shuffle(lesson.phrases).sort((a, b) => strength(a.id) - strength(b.id));
+    return shuffle(ranked.slice(0, Math.min(n, ranked.length)));
+  }
+  function distractors(lesson, p, n, key) {
+    const seen = new Set([p[key]]);
+    const pool = shuffle(lesson.phrases.filter(x => x.id !== p.id));
+    const out = [];
+    for (const x of pool) { if (out.length >= n) break; if (!seen.has(x[key])) { seen.add(x[key]); out.push(x); } }
+    return out;
+  }
+
+  /* ================= session building ================= */
+  function mcItem(type, lesson, p, mode) {
+    const key = mode === "fr" ? "fr" : S.lang;
+    const opts = shuffle([p].concat(distractors(lesson, p, 3, key)));
+    return { type, p, mode, options: opts, answer: opts.indexOf(p) };
+  }
+  function writeItem(lesson, p) {
+    const words = tokens(p.fr);
+    if (words.length <= 3) return { type: "write_type", p, value: "" };
+    const lower = new Set(words.map(w => w.toLowerCase()));
+    const extra = shuffle([].concat(...lesson.phrases.filter(x => x.id !== p.id).map(x => tokens(x.fr))))
+      .filter(w => !lower.has(w.toLowerCase()));
+    const ex = [];
+    for (const w of extra) { if (ex.length >= 2) break; if (!ex.some(e => e.toLowerCase() === w.toLowerCase())) ex.push(w); }
+    const bank = shuffle(words.concat(ex)).map((w, i) => ({ w, i }));
+    return { type: "write_tiles", p, bank, picked: [] };
+  }
+  function buildSession(lid, skill) {
+    const lesson = lessonById(lid);
+    let items = [];
+    if (skill === "read") {
+      items = pickPhrases(lesson, 6).map(p => mcItem("read_mc", lesson, p, "meaning"));
+      lesson.dialogue.questions.forEach((q, qi) => {
+        const order = shuffle(q.options.map((_, i) => i));
+        const sq = { q: q.q, options: order.map(i => q.options[i]), answer: order.indexOf(q.answer) };
+        items.push({ type: "read_dlg", q: sq, qi, shown: {} });
+      });
+    } else if (skill === "speak") {
+      items = pickPhrases(lesson, 6).map(p => ({ type: "speak", p, tries: 0 }));
+    } else if (skill === "listen") {
+      items = pickPhrases(lesson, 8).map((p, i) => mcItem("listen_mc", lesson, p, i % 2 ? "meaning" : "fr"));
+    } else if (skill === "write") {
+      items = pickPhrases(lesson, 6).map(p => writeItem(lesson, p));
+    } else {
+      const ps = pickPhrases(lesson, 10);
+      items = shuffle([
+        ...ps.slice(0, 4).map(p => mcItem("read_mc", lesson, p, "meaning")),
+        ...ps.slice(4, 6).map(p => ({ type: "speak", p, tries: 0 })),
+        ...ps.slice(6, 8).map((p, i) => mcItem("listen_mc", lesson, p, i ? "meaning" : "fr")),
+        ...ps.slice(8, 10).map(p => writeItem(lesson, p))
+      ]);
+    }
+    return { lid, skill, items, i: 0, results: [], fb: null, sel: null, listening: false, speakMsg: "", skipSpeak: false };
+  }
+  const itemSkill = it => ({ read_mc: "read", read_dlg: "read", speak: "speak", listen_mc: "listen", write_tiles: "write", write_type: "write" }[it.type]);
+
+  /* ================= views ================= */
+  function topBar() {
+    return `<header class="bar">
+      <span class="brand">Petit à petit</span>
+      <div class="seg" role="group" aria-label="Language">
+        <button data-action="lang" data-v="ja" aria-pressed="${S.lang === "ja"}" lang="ja">日本語</button>
+        <button data-action="lang" data-v="en" aria-pressed="${S.lang === "en"}">EN</button>
+      </div>
+      <button class="iconbtn" data-action="settings" aria-label="${t("settings")}" aria-expanded="${settingsOpen}">${ICON.gear}</button>
+    </header>${settingsPanel()}`;
+  }
+
+  function settingsPanel() {
+    if (!settingsOpen) return "";
+    return `<section class="settings" aria-label="${t("settings")}">
+      <div class="set-row">
+        <div><b>${t("kana")}</b><div class="muted" style="font-size:var(--s-sm)">${t("kanaHint")}</div></div>
+        <button class="switch" role="switch" aria-checked="${S.kana}" data-action="kana" aria-label="${t("kana")}"></button>
+      </div>
+      ${resetAsk
+        ? `<div class="set-row"><b class="danger">${t("resetSure")}</b><span class="btn-row" style="width:auto"><button class="btn ghost" data-action="reset-no">${t("cancel")}</button><button class="btn" style="background:var(--bad);color:var(--sheet)" data-action="reset-yes">${t("yesReset")}</button></span></div>`
+        : `<div class="set-row"><span class="muted">${toast ? esc(toast) : ""}</span><button class="iconbtn danger" data-action="reset">${t("reset")}</button></div>`}
+    </section>`;
+  }
+
+  function renderHome() {
+    const nu = nextUp();
+    const avg = sk => Math.round(DATA.lessons.reduce((s, l) => s + skillScore(l.id, sk), 0) / DATA.lessons.length);
+    let nextCard;
+    if (nu) {
+      const l = lessonById(nu.lid);
+      nextCard = `<button class="next" data-action="start" data-lid="${l.id}" data-skill="${nu.sk}">
+        <span class="eyebrow">${t("upNext")}</span>
+        <strong>${t("lesson")} ${lessonNum(l.id)} · ${esc(L(l.title))}</strong>
+        <span class="go">${t(nu.sk)} — ${t(nu.sk + "Desc")} ${ICON.arrow}</span>
+      </button>`;
+    } else {
+      nextCard = `<div class="next" style="cursor:default"><span class="eyebrow">${t("upNext")}</span><strong>${t("allDone")}</strong></div>`;
+    }
+    app.innerHTML = `${topBar()}
+      <section class="greet">
+        <span class="cursive">${t("hello")}</span>
+        <span class="muted">${t("appSub")} · ${t("helloSub")}</span>
+      </section>
+      ${nextCard}
+      <div class="section-h"><h2>${t("progress")}</h2></div>
+      <div class="meters">${SKILLS.map(sk => `<div class="meter"><b>${t(sk)}</b><div class="track"><div class="fill" style="width:${avg(sk)}%"></div></div><span class="pct">${avg(sk)}%</span></div>`).join("")}</div>
+      <div class="section-h"><h2>${t("lessons")}</h2></div>
+      <div class="lessons">${DATA.lessons.map((l, i) => `
+        <button class="lesson-row" data-action="lesson" data-lid="${l.id}">
+          <span class="lnum">${i + 1}</span>
+          <span style="min-width:0"><span class="fr" lang="fr">${esc(l.fr)}</span><br><span class="t">${esc(L(l.title))}</span>${S.lang === "en" ? `<span class="sub-ja" lang="ja">${esc(l.title.ja)}</span>` : ""}</span>
+          <span class="pips">${SKILLS.map(sk => `<span>${t(sk)}</span>`).join("")}${SKILLS.map(sk => `<span class="pip l${level(skillScore(l.id, sk))}"></span>`).join("")}</span>
+        </button>`).join("")}</div>
+      <p class="credits">${t("credits")}</p>`;
+  }
+
+  function renderLesson(lid) {
+    const l = lessonById(lid);
+    const row = (sk, n) => `<button class="skill" data-action="${sk === "read" ? "cards" : "start"}" data-lid="${lid}" data-skill="${sk}">
+        <span class="ord">${n}</span>
+        <span style="min-width:0"><span class="nm">${t(sk)}</span><br><span class="ds">${t(sk + "Desc")}</span></span>
+        <span class="dots">${dots(skillScore(lid, sk))}</span>
+      </button>`;
+    app.innerHTML = `${topBar()}
+      <button class="back" data-action="home">${ICON.back}${t("back")}</button>
+      <section class="lesson-head">
+        <span class="eyebrow">${t("lesson")} ${lessonNum(lid)}</span>
+        <span class="cursive" lang="fr">${esc(l.fr)}</span>
+        <h1>${esc(L(l.title))}${S.lang === "en" ? `<span class="sub-ja" lang="ja">${esc(l.title.ja)}</span>` : ""}</h1>
+        <p class="muted" style="margin:0">${esc(L(l.intro))}</p>
+      </section>
+      <div class="section-h" style="margin-top:0"><h2>${t("order")}</h2></div>
+      <div class="skills">
+        ${SKILLS.map((sk, i) => row(sk, i + 1)).join("")}
+        <button class="skill mixed" data-action="start" data-lid="${lid}" data-skill="mixed">
+          <span class="ord">＋</span>
+          <span style="min-width:0"><span class="nm">${t("mixed")}</span><br><span class="ds">${t("mixedDesc")}</span></span>
+          <span class="dots">${dots(skillScore(lid, "mixed"))}</span>
+        </button>
+      </div>
+      <div class="section-h"><h2>${t("tips")}</h2></div>
+      <div class="tips">${l.tips.map(tp => `<div class="tip"><span>${esc(L(tp))}</span></div>`).join("")}</div>
+      <div class="section-h"><h2>${t("phraseList")}</h2></div>
+      <div class="phrase-list">${l.phrases.map(p => `
+        <div class="pl-row">${playBtn(p.id)}
+          <div style="min-width:0"><div class="fr" lang="fr">${esc(p.fr)}</div><div class="mn">${meaning(p, "")}</div></div>
+        </div>`).join("")}</div>`;
+  }
+
+  function renderCards() {
+    const l = lessonById(view.lid);
+    const i = view.i, p = l.phrases[i];
+    const last = i === l.phrases.length - 1;
+    app.innerHTML = `${topBar()}
+      <div class="sess-top">
+        <button class="iconbtn" data-action="lesson" data-lid="${l.id}" aria-label="${t("quit")}">${ICON.x}</button>
+        <div class="progress"><div style="width:${((i + 1) / l.phrases.length) * 100}%"></div></div>
+        <span class="skill-tag">${t("cards")}</span>
+      </div>
+      <div class="card-wrap">
+        <div class="sheet stack">
+          <span class="counter">${i + 1} / ${l.phrases.length}</span>
+          <div class="fr-big" lang="fr">${esc(p.fr)}</div>
+          ${S.kana ? `<div class="kana">${esc(p.kana)}</div>` : ""}
+          <div class="card-controls">${playBtn(p.id, { big: true })}${playBtn(p.id, { big: true, slow: true })}</div>
+        </div>
+        ${view.reveal
+          ? `<div class="stack" style="gap:8px">${meaning(p)}${p.note ? `<div class="note">${esc(L(p.note))}</div>` : ""}</div>`
+          : `<button class="reveal" data-action="reveal">${t("showMeaning")}</button>`}
+      </div>
+      <div class="actions">
+        <div class="btn-row">
+          <button class="btn ghost" data-action="card" data-d="-1" ${i === 0 ? "disabled" : ""}>${t("prev")}</button>
+          ${last ? `<button class="btn" data-action="start" data-lid="${l.id}" data-skill="read">${t("toQuiz")}</button>`
+                 : `<button class="btn" data-action="card" data-d="1">${t("next")}</button>`}
+        </div>
+        ${last ? "" : `<button class="btn ghost" data-action="start" data-lid="${l.id}" data-skill="read">${t("skipCards")}</button>`}
+      </div>`;
+  }
+
+  /* ---------- session ---------- */
+  function feedbackBox(it) {
+    const fb = session.fb;
+    if (!fb) return "";
+    const p = it.p;
+    const cls = fb.score >= 0.9 ? "ok" : fb.score >= 0.6 ? "almost" : "bad";
+    let body = "";
+    if (it.type === "read_dlg") {
+      body = "";
+    } else {
+      body = `<div class="row">${playBtn(p.id)}<div style="min-width:0"><div style="font-weight:700" lang="fr">${esc(p.fr)}</div><div class="muted" style="font-size:var(--s-sm)">${meaning(p, "")}</div></div></div>`;
+    }
+    return `<div class="feedback ${cls}" role="status"><span class="verdict">${esc(fb.msg)}</span>${body}</div>`;
+  }
+
+  function renderItem(it) {
+    const lesson = lessonById(session.lid);
+    const answered = !!session.fb;
+    const optBtn = (o, i, inner, extraCls) => {
+      let cls = "opt" + (extraCls || "");
+      if (answered && i === it.answer) cls += " right";
+      else if (answered && i === session.sel) cls += " wrong";
+      return `<button class="${cls}" data-action="pick" data-i="${i}" ${answered ? "disabled" : ""}>${inner}</button>`;
+    };
+
+    if (it.type === "read_mc") {
+      return `<div class="sheet stack">
+          <span class="prompt">${t("whatMeans")}</span>
+          <div class="fr-big" lang="fr">${esc(it.p.fr)}</div>
+          ${S.kana && answered ? `<div class="kana">${esc(it.p.kana)}</div>` : ""}
+        </div>
+        <div class="options">${it.options.map((o, i) => optBtn(o, i, meaning(o, ""))).join("")}</div>`;
+    }
+
+    if (it.type === "read_dlg") {
+      const d = lesson.dialogue;
+      return `<div class="sheet stack">
+          <span class="prompt">${t("readDlg")} · ${esc(L(d.title))}</span>
+          <div class="dlg">${d.lines.map(ln => `
+            <div class="dlg-line">${playBtn(ln.id)}
+              <div style="min-width:0">
+                <span class="who">${esc(ln.who)}</span>
+                <button class="txt" data-action="line" data-id="${ln.id}" lang="fr">${esc(ln.fr)}
+                  ${it.shown[ln.id] || answered ? `<span class="tr" ${S.lang === "ja" ? 'lang="ja"' : ""}>${esc(L(ln))}</span>` : ""}
+                </button>
+              </div>
+            </div>`).join("")}</div>
+          <div class="card-controls"><button class="play slow" data-action="playall">${ICON.play}<span>${t("playAll")}</span></button><span class="muted" style="font-size:var(--s-xs)">${t("tapLine")}</span></div>
+        </div>
+        <p style="font-weight:700;margin:18px 0 0">${esc(L(it.q.q))}${S.lang === "en" ? `<span class="sub-ja" lang="ja">${esc(it.q.q.ja)}</span>` : ""}</p>
+        <div class="options">${it.q.options.map((o, i) => optBtn(o, i, meaning(o, ""))).join("")}</div>`;
+    }
+
+    if (it.type === "listen_mc") {
+      const fr = it.mode === "fr";
+      return `<div class="sheet stack center" style="align-items:center">
+          <span class="prompt">${fr ? t("whichHeard") : t("meaningHeard")}</span>
+          <div class="card-controls" style="justify-content:center">${playBtn(it.p.id, { big: true })}${playBtn(it.p.id, { big: true, slow: true })}</div>
+        </div>
+        <div class="options">${it.options.map((o, i) => optBtn(o, i, fr ? `<span lang="fr">${esc(o.fr)}</span>` : meaning(o, ""), fr ? " fr-opt" : "")).join("")}</div>`;
+    }
+
+    if (it.type === "speak") {
+      const p = it.p;
+      const words = tokens(p.fr);
+      let heardHtml = "";
+      if (it.heard != null) {
+        const hw = new Set(normSpeech(it.heard).split(" "));
+        const marked = words.map(w => {
+          const parts = normSpeech(w).split(" ");
+          const ok = parts.every(x => hw.has(x));
+          return `<span class="${ok ? "w-ok" : "w-miss"}">${esc(w)}</span>`;
+        }).join(" ");
+        heardHtml = `<div class="heard"><div lang="fr" style="font-size:var(--s-lg)">${marked}</div><div class="muted">${t("heard")}: “${esc(it.heard)}”</div></div>`;
+      }
+      let control;
+      if (micBroken || session.skipSpeak) {
+        control = `<div class="info" style="margin-top:16px">${t("noMic")}</div>
+          ${answered ? "" : `<p style="font-weight:700;margin:14px 0 0">${t("selfQ")}</p>
+          <div class="self"><button class="btn ghost" data-action="self" data-v="0.3">${t("notYet")}</button><button class="btn" data-action="self" data-v="0.9">${t("saidIt")}</button></div>`}`;
+      } else {
+        control = `<button class="mic ${session.listening ? "on" : ""}" data-action="mic" aria-label="${t("tapMic")}" ${answered ? "disabled" : ""}>${ICON.mic}</button>
+          <p class="center muted" style="margin:0">${session.listening ? t("listening") : session.speakMsg ? esc(session.speakMsg) : answered ? "" : t("tapMic")}</p>`;
+      }
+      return `<div class="sheet stack">
+          <span class="prompt">${t("sayIt")}</span>
+          <div class="fr-big" lang="fr">${esc(p.fr)}</div>
+          ${S.kana ? `<div class="kana">${esc(p.kana)}</div>` : ""}
+          <div>${meaning(p, "")}</div>
+          <div class="card-controls">${playBtn(p.id, { big: true })}${playBtn(p.id, { big: true, slow: true })}</div>
+        </div>
+        ${heardHtml}
+        ${control}`;
+    }
+
+    if (it.type === "write_tiles") {
+      const pickedSet = new Set(it.picked);
+      return `<div class="sheet stack">
+          <span class="prompt">${t("build")}</span>
+          <div>${meaning(it.p)}</div>
+          <div class="answer-line" aria-live="polite">${it.picked.map(i => `<button class="tile" data-action="untile" data-i="${i}" lang="fr" ${answered ? "disabled" : ""}>${esc(it.bank[i].w)}</button>`).join("")}</div>
+        </div>
+        <div class="bank">${it.bank.map(b => `<button class="tile ${pickedSet.has(b.i) ? "used" : ""}" data-action="tile" data-i="${b.i}" lang="fr" ${answered || pickedSet.has(b.i) ? "disabled" : ""}>${esc(b.w)}</button>`).join("")}</div>`;
+    }
+
+    if (it.type === "write_type") {
+      const keys = ["é", "è", "ê", "à", "â", "ç", "ô", "î", "û", "ù", "ë", "œ", "'"];
+      return `<div class="sheet stack">
+          <span class="prompt">${t("typeIt")}</span>
+          <div>${meaning(it.p)}</div>
+          <div class="card-controls">${playBtn(it.p.id)}<span class="muted" style="font-size:var(--s-sm)">${S.lang === "ja" ? "ヒント：音声" : "Hint: audio"}</span></div>
+        </div>
+        <input class="type-in" id="type-in" lang="fr" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"
+          placeholder="${t("typeHere")}" value="${esc(it.value)}" ${answered ? "disabled" : ""}>
+        ${answered ? "" : `<div class="accents" aria-label="Accents">${keys.map(k => `<button data-action="accent" data-k="${k}" lang="fr">${k}</button>`).join("")}</div>`}`;
+    }
+    return "";
+  }
+
+  function renderSession() {
+    const s = session, it = s.items[s.i];
+    const answered = !!s.fb;
+    let actions;
+    if (answered) {
+      actions = `<button class="btn" data-action="next">${t("cont")}</button>`;
+    } else if (it.type === "write_tiles") {
+      actions = `<button class="btn" data-action="check" ${it.picked.length ? "" : "disabled"}>${t("check")}</button>`;
+    } else if (it.type === "write_type") {
+      actions = `<button class="btn" data-action="check" ${it.value.trim() ? "" : "disabled"}>${t("check")}</button>`;
+    } else if (it.type === "speak") {
+      actions = micBroken || s.skipSpeak
+        ? ""
+        : `<button class="btn ghost" data-action="cantspeak">${t("cantSpeak")}</button>`;
+    } else {
+      actions = "";
+    }
+    if (it.type === "speak" && !answered && it.tries >= 1 && !micBroken && !s.skipSpeak) {
+      actions = `<div class="btn-row"><button class="btn ghost" data-action="skipitem">${t("skip")}</button><button class="btn ghost" data-action="cantspeak">${t("cantSpeak")}</button></div>`;
+    }
+    const tag = s.skill === "mixed" ? `${t("mixed")} · ${t(itemSkill(it))}` : t(s.skill);
+    app.innerHTML = `${topBar()}
+      <div class="sess-top">
+        <button class="iconbtn" data-action="lesson" data-lid="${s.lid}" aria-label="${t("quit")}">${ICON.x}</button>
+        <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="${s.items.length}" aria-valuenow="${s.i}"><div style="width:${(s.i / s.items.length) * 100}%"></div></div>
+        <span class="skill-tag">${tag}</span>
+      </div>
+      ${renderItem(it)}
+      <div class="actions">${feedbackBox(it)}${actions}</div>`;
+    const inp = document.getElementById("type-in");
+    if (inp && !answered) {
+      inp.addEventListener("input", () => { it.value = inp.value; const b = app.querySelector('[data-action="check"]'); if (b) b.disabled = !inp.value.trim(); });
+      inp.addEventListener("keydown", e => { if (e.key === "Enter" && inp.value.trim()) { e.preventDefault(); check(); } });
+    }
+  }
+
+  function answer(score, msg) {
+    const it = session.items[session.i];
+    session.fb = { score, msg };
+    session.results.push({ it, score });
+    if (it.p) recordPhrase(it.p.id, score);
+    save();
+    renderSession();
+    const btn = app.querySelector('[data-action="next"]');
+    if (btn) btn.focus({ preventScroll: true });
+  }
+
+  function check() {
+    const it = session.items[session.i];
+    if (it.type === "write_tiles") {
+      const built = it.picked.map(i => it.bank[i].w).join(" ");
+      const ok = normWrite(built) === normWrite(tokens(it.p.fr).join(" "));
+      answer(ok ? 1 : 0, ok ? t("correct") : t("wrong"));
+    } else if (it.type === "write_type") {
+      const g = gradeWrite(it.p, it.value);
+      answer(g, g >= 1 ? t("correct") : g > 0 ? t("almost") : t("wrong"));
+    }
+  }
+
+  function nextItem() {
+    session.i++; session.fb = null; session.sel = null; session.speakMsg = "";
+    if (session.i >= session.items.length) return finish();
+    const it = session.items[session.i];
+    renderSession();
+    window.scrollTo({ top: 0 });
+    if (it.type === "listen_mc") play(it.p.id);
+    if (it.type === "speak") play(it.p.id);
+  }
+
+  function finish() {
+    const s = session;
+    const scored = s.results.filter(r => r.score !== null);
+    const pct = scored.length ? Math.round((scored.reduce((a, r) => a + r.score, 0) / scored.length) * 100) : 0;
+    const rec = S.skills[s.lid] || (S.skills[s.lid] = {});
+    rec[s.skill] = Math.max(rec[s.skill] || 0, pct);
+    save();
+    view = { name: "results", lid: s.lid, skill: s.skill, pct, missed: scored.filter(r => r.score < 0.6 && r.it.p).map(r => r.it.p) };
+    render();
+  }
+
+  function renderResults() {
+    const v = view;
+    const idx = SKILLS.indexOf(v.skill);
+    const nextSk = idx >= 0 && idx < 3 ? SKILLS[idx + 1] : null;
+    const uniq = [...new Map(v.missed.map(p => [p.id, p])).values()];
+    app.innerHTML = `${topBar()}
+      <section class="result-hero">
+        <span class="cursive">${v.pct >= 70 ? "Très bien !" : "Courage !"}</span>
+        <strong>${t("done")}</strong>
+        <span class="score">${v.pct}<span style="font-size:1.5rem">%</span></span>
+        <span class="muted">${t(v.skill)} · ${t("best")} ${skillScore(v.lid, v.skill)}%</span>
+      </section>
+      ${uniq.length ? `<div class="section-h"><h2>${t("review")}</h2></div>
+        <div class="phrase-list">${uniq.map(p => `<div class="pl-row">${playBtn(p.id)}<div style="min-width:0"><div class="fr" lang="fr">${esc(p.fr)}</div><div class="mn">${meaning(p, "")}</div></div></div>`).join("")}</div>` : ""}
+      <div class="actions">
+        ${nextSk ? `<button class="btn" data-action="${nextSk === "read" ? "cards" : "start"}" data-lid="${v.lid}" data-skill="${nextSk}">${t("nextSkill")}: ${t(nextSk)}</button>` : ""}
+        <div class="btn-row">
+          <button class="btn ghost" data-action="start" data-lid="${v.lid}" data-skill="${v.skill}">${t("again")}</button>
+          <button class="btn ghost" data-action="lesson" data-lid="${v.lid}">${t("toLesson")}</button>
+        </div>
+      </div>`;
+  }
+
+  function render() {
+    if (!DATA) return;
+    document.documentElement.lang = S.lang;
+    if (view.name === "home") renderHome();
+    else if (view.name === "lesson") renderLesson(view.lid);
+    else if (view.name === "cards") renderCards();
+    else if (view.name === "session") renderSession();
+    else if (view.name === "results") renderResults();
+  }
+
+  /* ================= speech recognition ================= */
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) micBroken = true;
+  let activeRec = null, recTimer = null;
+  function startMic() {
+    const it = session.items[session.i];
+    if (!SR) { micBroken = true; renderSession(); return; }
+    let rec;
+    try { rec = new SR(); } catch (e) { micBroken = true; renderSession(); return; }
+    rec.lang = "fr-FR"; rec.interimResults = false; rec.maxAlternatives = 5;
+    let got = false;
+    rec.onresult = e => {
+      got = true; session.listening = false;
+      const alts = Array.from(e.results[0]).map(a => a.transcript);
+      let bestAlt = alts[0] || "", best = -1;
+      alts.forEach(a => { const sc = similarity(it.p.fr, a); if (sc > best) { best = sc; bestAlt = a; } });
+      it.heard = bestAlt; it.tries++;
+      if (best >= 0.8) answer(1, t("great"));
+      else if (best >= 0.55) answer(0.7, t("close"));
+      else { session.speakMsg = t("tryAgain"); renderSession(); }
+    };
+    rec.onerror = e => {
+      session.listening = false;
+      if (["not-allowed", "service-not-allowed", "audio-capture", "network", "language-not-supported"].includes(e.error)) micBroken = true;
+      else if (e.error === "no-speech") session.speakMsg = t("noSpeech");
+      renderSession();
+    };
+    rec.onend = () => {
+      clearTimeout(recTimer); activeRec = null;
+      if (session.listening && !got) { session.listening = false; session.speakMsg = t("noSpeech"); renderSession(); }
+    };
+    try { player.pause(); } catch (e) {}
+    try {
+      rec.start(); activeRec = rec; session.listening = true; session.speakMsg = ""; renderSession();
+      // Some browsers never fire events when the mic is silently blocked; give up after 9 s.
+      recTimer = setTimeout(() => {
+        if (session && session.listening && !got) {
+          try { rec.abort(); } catch (e) {}
+          session.listening = false; it.tries++; session.speakMsg = t("noSpeech"); renderSession();
+        }
+      }, 9000);
+    }
+    catch (e) { micBroken = true; renderSession(); }
+  }
+
+  /* ================= events ================= */
+  app.addEventListener("click", e => {
+    const b = e.target.closest("[data-action]");
+    if (!b || b.disabled) return;
+    const a = b.dataset.action;
+    const it = session && view.name === "session" ? session.items[session.i] : null;
+    switch (a) {
+      case "lang": S.lang = b.dataset.v; save(); render(); break;
+      case "settings": settingsOpen = !settingsOpen; resetAsk = false; toast = ""; render(); break;
+      case "kana": S.kana = !S.kana; save(); render(); break;
+      case "reset": resetAsk = true; render(); break;
+      case "reset-no": resetAsk = false; render(); break;
+      case "reset-yes": {
+        const lang = S.lang, kana = S.kana;
+        Object.assign(S, freshState(), { lang, kana }); save();
+        resetAsk = false; toast = t("resetDone"); render(); break;
+      }
+      case "home": view = { name: "home" }; render(); window.scrollTo({ top: 0 }); break;
+      case "lesson": view = { name: "lesson", lid: b.dataset.lid }; session = null; render(); window.scrollTo({ top: 0 }); break;
+      case "cards": view = { name: "cards", lid: b.dataset.lid, i: 0, reveal: false }; render(); window.scrollTo({ top: 0 }); play(lessonById(view.lid).phrases[0].id); break;
+      case "card": {
+        const n = lessonById(view.lid).phrases.length;
+        view.i = Math.max(0, Math.min(n - 1, view.i + +b.dataset.d)); view.reveal = false; render();
+        play(lessonById(view.lid).phrases[view.i].id); break;
+      }
+      case "reveal": view.reveal = true; render(); break;
+      case "start": {
+        session = buildSession(b.dataset.lid, b.dataset.skill);
+        view = { name: "session" }; settingsOpen = false; render(); window.scrollTo({ top: 0 });
+        const first = session.items[0];
+        if (first.type === "listen_mc" || first.type === "speak") play(first.p.id);
+        break;
+      }
+      case "play": play(b.dataset.id, !!b.dataset.slow); break;
+      case "playall": playAll(lessonById(session.lid).dialogue.lines.map(l => l.id)); break;
+      case "line": if (it) { it.shown[b.dataset.id] = !it.shown[b.dataset.id]; renderSession(); } break;
+      case "pick": {
+        if (!it || session.fb) break;
+        const i = +b.dataset.i;
+        session.sel = i;
+        const right = it.type === "read_dlg" ? it.q.answer : it.answer;
+        if (it.type === "read_dlg") it.answer = right;
+        answer(i === right ? 1 : 0, i === right ? t("correct") : t("wrong"));
+        if (it.type === "read_mc" && it.p) play(it.p.id);
+        break;
+      }
+      case "tile": it.picked.push(+b.dataset.i); renderSession(); break;
+      case "untile": it.picked = it.picked.filter(x => x !== +b.dataset.i); renderSession(); break;
+      case "accent": {
+        const inp = document.getElementById("type-in");
+        if (inp) {
+          const s0 = inp.selectionStart ?? inp.value.length, s1 = inp.selectionEnd ?? s0;
+          inp.value = inp.value.slice(0, s0) + b.dataset.k + inp.value.slice(s1);
+          it.value = inp.value; inp.focus(); inp.setSelectionRange(s0 + 1, s0 + 1);
+          const c = app.querySelector('[data-action="check"]'); if (c) c.disabled = !inp.value.trim();
+        }
+        break;
+      }
+      case "check": check(); break;
+      case "mic":
+        if (session.listening) { try { activeRec && activeRec.stop(); } catch (e) {} }
+        else startMic();
+        break;
+      case "self": answer(+b.dataset.v, +b.dataset.v >= 0.6 ? t("great") : t("wrong")); break;
+      case "cantspeak": {
+        // In a speaking session, switch to self-check. Elsewhere, drop the remaining
+        // speaking items so they don't count toward the score.
+        session.skipSpeak = true;
+        if (session.skill === "speak") { renderSession(); break; }
+        session.items = session.items.filter((x, idx) => idx < session.i || x.type !== "speak");
+        if (session.i >= session.items.length) finish();
+        else { session.fb = null; renderSession(); }
+        break;
+      }
+      case "skipitem": answer(0, t("wrong")); break;
+      case "next": nextItem(); break;
+    }
+  });
+
+  /* ================= boot ================= */
+  fetch("content/lessons.json")
+    .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(d => {
+      DATA = d;
+      d.lessons.forEach(l => {
+        l.phrases.forEach(p => { PH[p.id] = p; CLIP[p.id] = p.fr; });
+        l.dialogue.lines.forEach(x => { CLIP[x.id] = x.fr; });
+      });
+      render();
+    })
+    .catch(() => {
+      app.innerHTML = `${topBar()}<p class="danger">レッスンを読み込めませんでした。再読み込みしてください。<br>Couldn't load the lessons. Reload the page to try again.</p>`;
+    });
+
+  // Offline support when installed from GitHub Pages (not available inside previews).
+  if ("serviceWorker" in navigator && location.protocol === "https:" && /github\.io$/.test(location.hostname)) {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  }
+})();
+</script>
+<!--ARTIFACT-END-->
+</body>
+</html>

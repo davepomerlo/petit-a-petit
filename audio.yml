@@ -1,0 +1,41 @@
+name: Generate lesson audio
+
+# Runs when lessons change: makes MP3s for any new phrase or dialogue line
+# and commits them back to the repo.
+on:
+  push:
+    branches: [main]
+    paths: ["content/lessons.json", "scripts/make_audio.py"]
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Rebuild every clip"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  audio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ffmpeg
+        run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
+      - name: Cache speech engine and voices
+        uses: actions/cache@v4
+        with:
+          path: .tts
+          key: tts-1.12.15-siwis-upmc
+      - name: Set up speech engine
+        run: bash scripts/setup_tts.sh
+      - name: Generate clips
+        run: python3 scripts/make_audio.py ${{ inputs.force && '--force' || '' }}
+      - name: Commit new audio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audio
+          git diff --cached --quiet || git commit -m "Generate lesson audio"
+          git push
