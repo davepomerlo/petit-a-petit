@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Playwrite+FR+Moderne:wght@300;400&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,600&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap">
 <style>
 /* Layout: one narrow column, like a page of a French school cahier.
    Seyès ruling (fine 8px lines, a stronger line every 32px, red margin) marks the practice sheet. */
@@ -36,7 +36,7 @@
   --border: #dde1f0;
   --shadow: 0 1px 2px rgba(26, 32, 52, .06), 0 6px 20px rgba(26, 32, 52, .06);
 
-  --f-display: "Playwrite FR Moderne", "Segoe Script", "Apple Chancery", cursive;
+  --f-display: "Fraunces", Georgia, "Times New Roman", serif;
   --f-body: "Atkinson Hyperlegible", "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
   --f-ja: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Atkinson Hyperlegible", sans-serif;
 
@@ -106,7 +106,7 @@ button { font: inherit; color: inherit; }
   border-bottom: 1px solid var(--border);
   margin-bottom: 20px;
 }
-.brand { font-family: var(--f-display); font-size: 1.35rem; color: var(--accent); line-height: 1.2; margin-right: auto; white-space: nowrap; }
+.brand { font-family: var(--f-display); font-style: italic; font-weight: 600; font-size: 1.45rem; color: var(--accent); line-height: 1.2; margin-right: auto; white-space: nowrap; }
 .iconbtn {
   border: 1px solid var(--border); background: var(--sheet); border-radius: 999px;
   min-width: 40px; height: 40px; padding: 0 12px; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
@@ -120,7 +120,7 @@ button { font: inherit; color: inherit; }
 /* ---------- type ---------- */
 h1, h2, h3 { margin: 0; line-height: 1.25; text-wrap: balance; }
 .eyebrow { font-size: var(--s-xs); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
-.cursive { font-family: var(--f-display); font-weight: 400; color: var(--accent); }
+.cursive { font-family: var(--f-display); font-style: italic; font-weight: 400; color: var(--accent); }
 .muted { color: var(--muted); }
 .sub-ja { display: block; font-family: var(--f-ja); font-size: var(--s-sm); color: var(--muted); }
 
@@ -155,7 +155,7 @@ h1, h2, h3 { margin: 0; line-height: 1.25; text-wrap: balance; }
 }
 .lesson-row:hover { border-color: var(--line-major); }
 .lnum { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); font-weight: 700; font-variant-numeric: tabular-nums; }
-.lesson-row .fr { font-family: var(--f-display); color: var(--accent); font-size: var(--s-md); line-height: 1.5; }
+.lesson-row .fr { font-family: var(--f-display); font-style: italic; color: var(--accent); font-size: 1.15rem; line-height: 1.4; }
 .lesson-row .t { font-weight: 700; }
 .pips { display: grid; grid-template-columns: repeat(4, auto); gap: 4px 8px; font-size: var(--s-xs); color: var(--muted); text-align: center; }
 .pip { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--line-major); margin: 0 auto; }

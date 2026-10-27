@@ -1,6 +1,6 @@
 // Offline cache for the installed app. Bump VERSION when lessons or audio change
 // so phones pick up the new content.
-const VERSION = "pap-v1";
+const VERSION = "pap-v2";
 const SHELL = ["./", "index.html", "content/lessons.json", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png"];
 
 self.addEventListener("install", e => {
